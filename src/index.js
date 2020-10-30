@@ -42,8 +42,19 @@ exports.getMinTemperature = async ({location, year}) => {
 // Get maximum Temperature for all years - Must return a number
 exports.getMaxTemperatureForLocation = async ({location}) => {
 	await getYears({location})
-	console.log(startYear)
-	return 0;
+	let highestTemp = 0;
+	for(year=startYear; year<=endYear; year++) {
+		let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`, {
+			method: "GET",
+			headers: headers
+		})
+		let data = await response.json();
+		let maxTemp = Math.max.apply(Math, data.result.map(function(temp) { return temp.temperature_max; }))
+		if (maxTemp>highestTemp) {
+			highestTemp = maxTemp
+		}
+	}
+	return highestTemp;
 }
 
 // Get minimum temperature for all years - Must return a number
@@ -58,7 +69,7 @@ exports.getAverageSunHours = async ({location, year}) => {
 		headers: headers
 	})
 	let data = await response.json();
-	//console.log(data)
+	// console.log(data)
 	let monthlySunHours = data.result.map((month) => month.sun)
 	let getAverage = arr => {
 		let reducer = (total, currentValue) => total + currentValue;
