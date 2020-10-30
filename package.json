@@ -1,0 +1,13 @@
+{
+	"name": "weatherclient",
+	"version": "1.0.0",
+	"description": "A client for a weather API",
+	"main": "src/index.js",
+	"scripts": {
+		"test": "./node_modules/.bin/jest"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"jest": "^25.1.0"
+	}
+}
