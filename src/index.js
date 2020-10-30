@@ -16,7 +16,13 @@ exports.getMaxTemperature = async ({location, year}) => {
 
 // Get minimum temperature for a year - Must return a number
 exports.getMinTemperature = async ({location, year}) => {
-	return 0;
+	let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`, {
+		method: "GET",
+		headers: headers
+	})
+	let data = await response.json()
+	let minTemp = Math.min.apply(Math, data.result.map(function(temp) { return temp.temperature_min; }))
+	return minTemp
 }
 
 // Get maximum Temperature for all years - Must return a number
