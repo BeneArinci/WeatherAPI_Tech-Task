@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const headers = {
   "x-api-key": "mcDLmlxrtw7ZHC70gD8FL4rtrXSPsUEB4iSp4lg3",
 }
+
 // Get maximum Temperature for a year - Must return a number
 exports.getMaxTemperature = async ({location, year}) => {
 	let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`, {
@@ -37,7 +38,19 @@ exports.getMinTemperatureForLocation = async ({location}) => {
 
 // Get average sun hours for a year - Must return a number
 exports.getAverageSunHours = async ({location, year}) => {
-	return 0;
+	let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`, {
+		method: "GET",
+		headers: headers
+	})
+	let data = await response.json();
+	console.log(data)
+	let monthlySunHours = data.result.map((month) => month.sun)
+	let getAverage = arr => {
+		let reducer = (total, currentValue) => total + currentValue;
+		let sum = arr.reduce(reducer)
+		return sum / arr.length;
+	}
+	return getAverage(monthlySunHours);
 }
 
 // Get average sun hours for all years - Must return a number
