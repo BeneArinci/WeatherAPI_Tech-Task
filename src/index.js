@@ -59,7 +59,19 @@ exports.getMaxTemperatureForLocation = async ({location}) => {
 
 // Get minimum temperature for all years - Must return a number
 exports.getMinTemperatureForLocation = async ({location}) => {
-	return 0;
+	let lowestTemp = 100;
+	for(year=startYear; year<=endYear; year++) {
+		let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`, {
+			method: "GET",
+			headers: headers
+		})
+		let data = await response.json();
+		let minTemp = Math.min.apply(Math, data.result.map(function(temp) { return temp.temperature_min; }))
+		if (minTemp<lowestTemp) {
+			lowestTemp = minTemp
+		}
+	}
+	return lowestTemp;
 }
 
 // Get average sun hours for a year - Must return a number
