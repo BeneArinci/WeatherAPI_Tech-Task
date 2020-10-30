@@ -7,7 +7,7 @@ const headers = {
 var startYear;
 var endYear;
 
-getYears = async ({location}) => {
+const getYears = async ({location}) => {
 	let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/years`, {
 		method: "GET",
 		headers: headers
@@ -15,6 +15,12 @@ getYears = async ({location}) => {
 	let data = await response.json()
   startYear = data.result.startYear
 	endYear = data.result.endYear
+}
+
+const getAverage = (valuesArray) => {
+	let reducer = (total, currentValue) => total + currentValue;
+	let sum = valuesArray.reduce(reducer)
+	return sum / valuesArray.length;
 }
 
 // Get maximum Temperature for a year - Must return a number
@@ -83,11 +89,6 @@ exports.getAverageSunHours = async ({location, year}) => {
 	let data = await response.json();
 	// console.log(data)
 	let monthlySunHours = data.result.map((month) => month.sun)
-	let getAverage = arr => {
-		let reducer = (total, currentValue) => total + currentValue;
-		let sum = arr.reduce(reducer)
-		return sum / arr.length;
-	}
 	return getAverage(monthlySunHours);
 }
 
