@@ -7,6 +7,7 @@ const headers = {
 let startYear;
 let endYear;
 let apiDataSingleYear;
+let apiDataLocation = [];
 
 
 const getYears = async ({location}) => {
@@ -26,6 +27,18 @@ const fetchingSingleYear = async ({location, year}) => {
 	})
 	let data = await response.json()
 	apiDataSingleYear = data
+}
+
+const fetchingLocationData = async ({location}) => {
+	await getYears({location})
+	for(year=startYear; year<=endYear; year++) {
+		let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`, {
+			method: "GET",
+			headers: headers
+		})
+		let data = await response.json();
+		apiDataLocation.push(data.result)
+	}
 }
 
 const getAverage = (valuesArray) => {
@@ -49,36 +62,27 @@ exports.getMinTemperature = async ({location, year}) => {
 
 // Get maximum Temperature for all years - Must return a number
 exports.getMaxTemperatureForLocation = async ({location}) => {
-	await getYears({location})
+	await fetchingLocationData({location})
 	let highestTemp = 0;
-	for(year=startYear; year<=endYear; year++) {
-		let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`, {
-			method: "GET",
-			headers: headers
-		})
-		let data = await response.json();
-		let maxTemp = Math.max.apply(Math, data.result.map(function(temp) { return temp.temperature_max; }))
+	apiDataLocation.forEach((year) => {
+		let maxTemp = Math.max.apply(Math, year.map(function(temp) { return temp.temperature_max; }))
 		if (maxTemp>highestTemp) {
 			highestTemp = maxTemp
 		}
-	}
+	})
+	
 	return highestTemp;
 }
 
 // Get minimum temperature for all years - Must return a number
 exports.getMinTemperatureForLocation = async ({location}) => {
 	let lowestTemp = 100;
-	for(year=startYear; year<=endYear; year++) {
-		let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`, {
-			method: "GET",
-			headers: headers
-		})
-		let data = await response.json();
-		let minTemp = Math.min.apply(Math, data.result.map(function(temp) { return temp.temperature_min; }))
+	apiDataLocation.forEach((year) => {
+		let minTemp = Math.min.apply(Math, year.map(function(temp) { return temp.temperature_min; }))
 		if (minTemp<lowestTemp) {
 			lowestTemp = minTemp
 		}
-	}
+	})
 	return lowestTemp;
 }
 
