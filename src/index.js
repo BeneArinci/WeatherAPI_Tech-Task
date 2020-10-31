@@ -94,5 +94,18 @@ exports.getAverageSunHours = async ({location, year}) => {
 
 // Get average sun hours for all years - Must return a number
 exports.getAverageSunHoursForLocation = async ({location}) => {
-	return 0;
+	let sunAverages = []
+	for(year=startYear; year<=endYear; year++) {
+		let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`, {
+			method: "GET",
+			headers: headers
+		})
+		let data = await response.json()
+		let monthlySunHours = data.result.map((month) => month.sun)
+		let yearlySunAverage = getAverage(monthlySunHours)
+		if (yearlySunAverage !== 0) {
+			sunAverages.push(yearlySunAverage)
+		}
+	}
+	return getAverage(sunAverages);
 }
