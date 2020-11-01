@@ -7,7 +7,7 @@ const { getMaxTemperature,
 
 const LOCATION = 'oxford';
 const YEAR = 2018;
-
+//increasing jest time out for making it able to complete the longest tests
 beforeEach(() => {
 	jest.setTimeout(30000)
 })
