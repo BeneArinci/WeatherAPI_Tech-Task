@@ -22,12 +22,10 @@ describe('The exported function', ()=> {
 		expect(typeof result).toEqual('number')
 	})
 	it('getMaxTemperatureForLocation returns a number', async () => {
-		jest.setTimeout(30000)
 		const result = await getMaxTemperatureForLocation({location: LOCATION})
 		expect(typeof result).toEqual('number')
 	})
 	it('getMinTemperatureForLocation returns a number', async () => {
-		jest.setTimeout(30000)
 		const result = await getMinTemperatureForLocation({location: LOCATION})
 		expect(typeof result).toEqual('number')
 	})
@@ -36,7 +34,6 @@ describe('The exported function', ()=> {
 		expect(typeof result).toEqual('number')
 	})
 	it('getAverageSunHoursForLocation returns a number', async () => {
-		jest.setTimeout(30000)
 		const result = await getAverageSunHoursForLocation({location: LOCATION})
 		expect(typeof result).toEqual('number')
 	})

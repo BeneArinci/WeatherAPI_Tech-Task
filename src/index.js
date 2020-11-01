@@ -88,7 +88,8 @@ exports.getMinTemperatureForLocation = async ({location}) => {
 // Get average sun hours for a year - Must return a number
 exports.getAverageSunHours = async ({location, year}) => {
 	let monthlySunHours = apiDataSingleYear.map((month) => month.sun)
-	return getAverage(monthlySunHours);
+	let average = getAverage(monthlySunHours).toFixed(1);
+	return Number(average)
 }
 
 // Get average sun hours for all years - Must return a number
@@ -101,5 +102,6 @@ exports.getAverageSunHoursForLocation = async ({location}) => {
 			sunAverages.push(yearlySunAverage)
 		}
 	})
-	return getAverage(sunAverages);
+	let average = getAverage(sunAverages).toFixed(1);
+	return Number(average);
 }
