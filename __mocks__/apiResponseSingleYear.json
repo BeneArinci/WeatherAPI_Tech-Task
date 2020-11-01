@@ -4,7 +4,7 @@
       "year": "TEST",
       "month": 1,
       "temperature_max": 8.9,
-      "temperature_min": 3,
+      "temperature_min": -3,
       "ad_days": 4,
       "rain": 59.1,
       "sun": 67.7

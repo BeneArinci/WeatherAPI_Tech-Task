@@ -1,6 +1,6 @@
 const {getMaxTemperature} = require('../src/index')
 
-const apiDataSingleYear = require ('../__mocks__/apiResponseSingleYear')
+const apiDataMock = require ('../__mocks__/apiResponseSingleYear')
 
 var sinon = require('sinon');
 var nodeFetch = require('node-fetch')
@@ -9,7 +9,7 @@ describe('getMaxTemperature using apiMock', () => {
 	it('Successfully gets the max Temperature based on mock data', async () =>{
 		const location = 'oxford';
 		const year = 2018;
-		sinon.stub(nodeFetch, 'Promise').returns(Promise.resolve({ json: () => { return apiDataSingleYear} }))
+		sinon.stub(nodeFetch, 'Promise').returns(Promise.resolve({ json: () => { return apiDataMock} }))
 		const result = await getMaxTemperature({location:location, year:year});
 		expect(result).toEqual(30)
 		sinon.restore();
