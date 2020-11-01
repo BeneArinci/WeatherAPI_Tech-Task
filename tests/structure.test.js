@@ -8,18 +8,9 @@ const { getMaxTemperature,
 const LOCATION = 'oxford';
 const YEAR = 2018;
 
-const apiDataSingleYear = require ('../__mocks__/apiResponseSingleYear')
-
-var sinon = require('sinon');
-var nodeFetch = require('node-fetch')
-
-// beforeEach(() => {
-// 	sinon.stub(nodeFetch, 'Promise').returns(Promise.resolve({ json: () => { return apiDataSingleYear} }))
-// })
-
-// afterEach(() => {
-// 	sinon.restore();
-// });
+beforeEach(() => {
+	jest.setTimeout(30000)
+})
 
 describe('The exported function', ()=> {
 	it('getMaxTemperature returns a number', async () => {
