@@ -8,6 +8,19 @@ const { getMaxTemperature,
 const LOCATION = 'oxford';
 const YEAR = 2018;
 
+const apiDataSingleYear = require ('../__mocks__/apiResponseSingleYear')
+
+var sinon = require('sinon');
+var nodeFetch = require('node-fetch')
+
+// beforeEach(() => {
+// 	sinon.stub(nodeFetch, 'Promise').returns(Promise.resolve({ json: () => { return apiDataSingleYear} }))
+// })
+
+// afterEach(() => {
+// 	sinon.restore();
+// });
+
 describe('The exported function', ()=> {
 	it('getMaxTemperature returns a number', async () => {
 		const result = await getMaxTemperature({location: LOCATION, year: YEAR})
@@ -18,10 +31,12 @@ describe('The exported function', ()=> {
 		expect(typeof result).toEqual('number')
 	})
 	it('getMaxTemperatureForLocation returns a number', async () => {
+		jest.setTimeout(30000)
 		const result = await getMaxTemperatureForLocation({location: LOCATION})
 		expect(typeof result).toEqual('number')
 	})
 	it('getMinTemperatureForLocation returns a number', async () => {
+		jest.setTimeout(30000)
 		const result = await getMinTemperatureForLocation({location: LOCATION})
 		expect(typeof result).toEqual('number')
 	})
@@ -30,6 +45,7 @@ describe('The exported function', ()=> {
 		expect(typeof result).toEqual('number')
 	})
 	it('getAverageSunHoursForLocation returns a number', async () => {
+		jest.setTimeout(30000)
 		const result = await getAverageSunHoursForLocation({location: LOCATION})
 		expect(typeof result).toEqual('number')
 	})
