@@ -7,7 +7,7 @@
       "temperature_min": -3,
       "ad_days": 4,
       "rain": 59.1,
-      "sun": 67.7
+      "sun": 100
     },
     {
       "year": 2018,
@@ -16,7 +16,7 @@
       "temperature_min": 0.3,
       "ad_days": 14,
       "rain": 24.1,
-      "sun": 117.6
+      "sun": 100
     },
     {
       "year": 2018,
@@ -25,7 +25,7 @@
       "temperature_min": 2.5,
       "ad_days": 6,
       "rain": 87.4,
-      "sun": 79
+      "sun": 100
     },
     {
       "year": 2018,
@@ -34,7 +34,7 @@
       "temperature_min": 7.5,
       "ad_days": 0,
       "rain": 52.8,
-      "sun": 121.5
+      "sun": 100
     },
     {
       "year": 2018,
@@ -43,7 +43,7 @@
       "temperature_min": 8.6,
       "ad_days": 0,
       "rain": 80.8,
-      "sun": 234.1
+      "sun": 100
     },
     {
       "year": 2018,
@@ -52,7 +52,7 @@
       "temperature_min": 11.6,
       "ad_days": 0,
       "rain": 2.5,
-      "sun": 252.2
+      "sun": 100
     },
     {
       "year": 2018,
@@ -61,7 +61,7 @@
       "temperature_min": 14.2,
       "ad_days": 0,
       "rain": 23.2,
-      "sun": 280.9
+      "sun": 100
     },
     {
       "year": 2018,
@@ -70,7 +70,7 @@
       "temperature_min": 13.2,
       "ad_days": 0,
       "rain": 43.2,
-      "sun": 198.6
+      "sun": 100
     },
     {
       "year": 2018,
@@ -79,7 +79,7 @@
       "temperature_min": 10,
       "ad_days": 0,
       "rain": 30.3,
-      "sun": 169.8
+      "sun": 100
     },
     {
       "year": 2018,
@@ -88,7 +88,7 @@
       "temperature_min": 7.3,
       "ad_days": 2,
       "rain": 50.1,
-      "sun": 117.3
+      "sun": 100
     },
     {
       "year": 2018,
@@ -97,7 +97,7 @@
       "temperature_min": 5.5,
       "ad_days": 2,
       "rain": 61.9,
-      "sun": 82.7
+      "sun": 100
     },
     {
       "year": 2018,
@@ -106,7 +106,7 @@
       "temperature_min": 4.7,
       "ad_days": 3,
       "rain": 71.8,
-      "sun": 53.8
+      "sun": 100
     }
   ]
 }
