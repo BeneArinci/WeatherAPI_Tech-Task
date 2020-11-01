@@ -16,7 +16,7 @@
       "temperature_min": 0.3,
       "ad_days": 14,
       "rain": 24.1,
-      "sun": 100
+      "sun": 50
     },
     {
       "year": 2018,
@@ -34,7 +34,7 @@
       "temperature_min": 7.5,
       "ad_days": 0,
       "rain": 52.8,
-      "sun": 100
+      "sun": 50
     },
     {
       "year": 2018,
@@ -52,7 +52,7 @@
       "temperature_min": 11.6,
       "ad_days": 0,
       "rain": 2.5,
-      "sun": 100
+      "sun": 50
     },
     {
       "year": 2018,
@@ -70,7 +70,7 @@
       "temperature_min": 13.2,
       "ad_days": 0,
       "rain": 43.2,
-      "sun": 100
+      "sun": 50
     },
     {
       "year": 2018,
@@ -88,7 +88,7 @@
       "temperature_min": 7.3,
       "ad_days": 2,
       "rain": 50.1,
-      "sun": 100
+      "sun": 50
     },
     {
       "year": 2018,
@@ -106,7 +106,7 @@
       "temperature_min": 4.7,
       "ad_days": 3,
       "rain": 71.8,
-      "sun": 100
+      "sun": 50
     }
   ]
 }
