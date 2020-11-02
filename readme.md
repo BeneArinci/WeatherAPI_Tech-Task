@@ -16,7 +16,7 @@ I developed a method for checking the year data availability. The first function
 ## Testing
 I tested all the main functions with real API data (both in a normal scenario and edge case).<br>
 In the beginning, I also created a file with mock API data (still available even if no longer used) and I had the opportunity to test with that the real functionality of all the functions that were making a single API call (getMaxTemp, getMinTemp, getAverageSunHours).<br>
-After adding the function for checking if the data for the requested year were available, also the above functions were required to do 2 different fetch calls and it became impossible to do a generic fetch mock. For this reason, I had to deactivate the existing mockAPI tests.
+After adding the function for checking if the data for the requested year were available, also the above functions were required to do 2 different fetch calls and it became impossible to do a generic fetch mock. For this reason, I had to deactivate the existing mockAPI tests.<br>
 
 ## External Libraries
 I used the *node-fetch* library to allow the use of the fetch function from the back-end.
@@ -24,7 +24,7 @@ I used the *node-fetch* library to allow the use of the fetch function from the 
 
 ## Areas of improvement/doubts
 I wasn't allowed to modify the app.js file. If I could, I would have preferred to check on data/year availability straight away after receiving the location and year input rather than asking the first called function to do that. This is an area of improvement but also a huge doubt for me because I started thinking that you might wanted me to proceed in a different way.<br>
-Another area of improvement might be sending an error message/not returning results if the user misspells the location or is inserting a not available one. 
+Another area of improvement might be sending an error message/not returning results if the user misspells the location or is inserting a not available one. In any case I hope you might appreciate my ideas and the reasoning behind my final solution :)
 
 
 ----------
