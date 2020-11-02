@@ -8,6 +8,11 @@ I started by keeping all the exported functions divided from the others. Every o
 For this reason, I refactored my code in order to reduce to the minimum the API calls and improve the performance. Consequently, I decided to store the API data into variables so that all the other functions were able to use them. The performance significantly improved passing from ~35sec to ~15sec execution time (Oxford).<br>
 On top of this, I tried to divide as much as possible the responsibilities for different tasks into different functions.
 
+## Steps
+As I mentioned above, I built all the methods and then I refactored my code in order to improve the performance. I did this taking into consideration only the "best-case scenario" - the user inserting a year with available data. <br>
+After completing a working app, I decided to take into consideration the main edge case: the user entering a data unavailable year. <br>
+I developed a method for checking the year data availability. The first function called by app.js (getMaxTemperature) is the one calling it. It stores the year availability inside a variable (boolean) that is used by all the other functions. Based on this variable (dataAvailability), every function knows if having to check for data or just return 0 (when the year is not available).
+
 ## External Libraries
 I used the *node-fetch* library to allow the use of the fetch function from the back-end.
 *Sinon* is the library that I used for mocking the fetch calls (read the "testing" paragraph)
