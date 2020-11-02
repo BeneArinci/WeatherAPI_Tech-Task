@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const { getAverage } = require('./sideFunctions')
 
 const headers = {
   "x-api-key": "mcDLmlxrtw7ZHC70gD8FL4rtrXSPsUEB4iSp4lg3",
@@ -57,11 +58,11 @@ const fetchingLocationData = async ({location}) => {
 }
 
 // calculate the average of array data
-const _getAverage = (valuesArray) => {
-	let reducer = (total, currentValue) => total + currentValue;
-	let sum = valuesArray.reduce(reducer)
-	return sum / valuesArray.length;
-}
+// const getAverage = (valuesArray) => {
+// 	let reducer = (total, currentValue) => total + currentValue;
+// 	let sum = valuesArray.reduce(reducer)
+// 	return sum / valuesArray.length;
+// }
 
 // Get maximum Temperature for a year - Must return a number
 exports.getMaxTemperature = async ({location, year}) => {
@@ -118,7 +119,7 @@ exports.getMinTemperatureForLocation = async ({location}) => {
 exports.getAverageSunHours = async ({location, year}) => {
 	if(dataAvailable) {
 		let monthlySunHours = apiDataSingleYear.map((month) => month.sun)
-		let average = _getAverage(monthlySunHours).toFixed(1);
+		let average = getAverage(monthlySunHours).toFixed(1);
 		return Number(average)
 	}
 	return 0
@@ -130,12 +131,12 @@ exports.getAverageSunHoursForLocation = async ({location}) => {
 		let sunAverages = []
   apiDataLocation.forEach((year) => {
 		let monthlySunHours = year.map((month) => month.sun)
-		let yearlySunAverage = _getAverage(monthlySunHours)
+		let yearlySunAverage = getAverage(monthlySunHours)
 		if (yearlySunAverage !== 0) {
 			sunAverages.push(yearlySunAverage)
 		}
 	})
-	let average = _getAverage(sunAverages).toFixed(1);
+	let average = getAverage(sunAverages).toFixed(1);
 	return Number(average);
 	}
 	return 0
