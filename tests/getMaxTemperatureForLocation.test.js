@@ -6,5 +6,12 @@ describe('getMaxTemperatureForLocation', () => {
     const location = 'oxford';
 		const result = await getMaxTemperatureForLocation({location:location});
 		expect(result).toEqual(27.4);
+  })
+  
+  it('Successfully gets the max Temperature for Heathrow', async () =>{
+    jest.setTimeout(30000);
+    const location = 'heathrow';
+		const result = await getMaxTemperatureForLocation({location:location});
+		expect(result).toEqual(28.3);
 	})
 })
