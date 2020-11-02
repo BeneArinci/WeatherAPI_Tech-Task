@@ -7,9 +7,9 @@ describe('getAverageSunHoursForLocation', () => {
     jest.setTimeout(60000);
     const location = 'oxford';
     const year = '2012'
-    await checkDataAvailability({location, year})
-    await fetchingLocationData({location})
-		const result = await getAverageSunHoursForLocation({location:location});
+    await checkDataAvailability({location:location, year:year})
+    await fetchingLocationData({location:location})
+		const result = await getAverageSunHoursForLocation();
 		expect(result).toEqual(128.1);
   })
 
@@ -17,18 +17,18 @@ describe('getAverageSunHoursForLocation', () => {
     jest.setTimeout(60000);
     const location = 'heathrow';
     const year = '2012'
-    await checkDataAvailability({location, year})
-    await fetchingLocationData({location})
-		const result = await getAverageSunHoursForLocation({location:location});
+    await checkDataAvailability({location:location, year:year})
+    await fetchingLocationData({location:location})
+		const result = await getAverageSunHoursForLocation();
 		expect(result).toEqual(128.5);
   })
   it('returns 0 if data are not available for that year - example Heathrow', async () =>{
     jest.setTimeout(30000);
     const location = 'heathrow';
     const year = 1600
-    await checkDataAvailability({location, year})
-    await fetchingLocationData({location})
-		const result = await getAverageSunHoursForLocation({location:location});
+    await checkDataAvailability({location:location, year:year})
+    await fetchingLocationData({location:location})
+		const result = await getAverageSunHoursForLocation();
 		expect(result).toEqual(0);
   })
 
@@ -36,9 +36,9 @@ describe('getAverageSunHoursForLocation', () => {
     jest.setTimeout(30000);
     const location = 'oxford';
     const year = 1600
-    await checkDataAvailability({location, year})
-    await fetchingLocationData({location})
-		const result = await getAverageSunHoursForLocation({location:location});
+    await checkDataAvailability({location:location, year:year})
+    await fetchingLocationData({location:location})
+		const result = await getAverageSunHoursForLocation();
 		expect(result).toEqual(0);
   })
 })

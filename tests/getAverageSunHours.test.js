@@ -24,7 +24,7 @@ describe('getAverageSunHours using real api data', () => {
     const year = 2018;
     await checkDataAvailability({location:location, year:year});
     await fetchingSingleYear({location:location, year:year});
-		const result = await getAverageSunHours({location:location, year:year});
+		const result = await getAverageSunHours();
 		expect(result).toEqual(147.9);
 	})
 
@@ -33,7 +33,7 @@ describe('getAverageSunHours using real api data', () => {
     const year = 2015;
     await checkDataAvailability({location:location, year:year});
     await fetchingSingleYear({location:location, year:year});
-		const result = await getAverageSunHours({location:location, year:year});
+		const result = await getAverageSunHours();
 		expect(result).toEqual(125.6);
 	})
 
@@ -42,7 +42,7 @@ describe('getAverageSunHours using real api data', () => {
 		const year = 1800;
 		await checkDataAvailability({location:location, year:year});
     await fetchingSingleYear({location:location, year:year});
-		const result = await getAverageSunHours({location:location, year:year});
+		const result = await getAverageSunHours();
 		expect(result).toEqual(0);
 	})
 
@@ -51,7 +51,7 @@ describe('getAverageSunHours using real api data', () => {
 		const year = 1800;
 		await checkDataAvailability({location:location, year:year});
     await fetchingSingleYear({location:location, year:year});
-		const result = await getAverageSunHours({location:location, year:year});
+		const result = await getAverageSunHours();
 		expect(result).toEqual(0);
 	})
 })

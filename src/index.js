@@ -69,7 +69,7 @@ exports.getMaxTemperature = async ({location, year}) => {
 }
 
 // Get minimum temperature for a year - Must return a number
-exports.getMinTemperature = async ({location, year}) => {
+exports.getMinTemperature = async () => {
 	if(dataAvailable === true) {
 		minTemp = Math.min.apply(Math, apiDataSingleYear.map(function(temp) { return temp.temperature_min; }))
 		return minTemp
@@ -94,7 +94,7 @@ exports.getMaxTemperatureForLocation = async ({location}) => {
 }
 
 // Get minimum temperature for all years - Must return a number
-exports.getMinTemperatureForLocation = async ({location}) => {
+exports.getMinTemperatureForLocation = async () => {
 	if(dataAvailable) {
 		let lowestTemp = 100;
 		apiDataLocation.forEach((year) => {
@@ -109,7 +109,7 @@ exports.getMinTemperatureForLocation = async ({location}) => {
 }
 
 // Get average sun hours for a year - Must return a number
-exports.getAverageSunHours = async ({location, year}) => {
+exports.getAverageSunHours = async () => {
 	if(dataAvailable) {
 		let monthlySunHours = apiDataSingleYear.map((month) => month.sun)
 		let average = getAverage(monthlySunHours).toFixed(1);
@@ -119,7 +119,7 @@ exports.getAverageSunHours = async ({location, year}) => {
 }
 
 // Get average sun hours for all years - Must return a number
-exports.getAverageSunHoursForLocation = async ({location}) => {
+exports.getAverageSunHoursForLocation = async () => {
 	if(dataAvailable) {
 		let sunAverages = []
   apiDataLocation.forEach((year) => {

@@ -6,7 +6,7 @@ describe('getMaxTemperatureForLocation', () => {
     jest.setTimeout(30000);
     const location = 'oxford';
     const year = 2018
-    await checkDataAvailability({location, year})
+    await checkDataAvailability({location:location, year:year})
 		const result = await getMaxTemperatureForLocation({location:location});
 		expect(result).toEqual(27.4);
   })
@@ -15,7 +15,7 @@ describe('getMaxTemperatureForLocation', () => {
     jest.setTimeout(30000);
     const location = 'heathrow';
     const year = 2004
-    await checkDataAvailability({location, year})
+    await checkDataAvailability({location:location, year:year})
 		const result = await getMaxTemperatureForLocation({location:location});
 		expect(result).toEqual(28.3);
   })
@@ -24,7 +24,7 @@ describe('getMaxTemperatureForLocation', () => {
     jest.setTimeout(30000);
     const location = 'oxford';
     const year = 1800
-    await checkDataAvailability({location, year})
+    await checkDataAvailability({location:location, year:year})
 		const result = await getMaxTemperatureForLocation({location:location});
 		expect(result).toEqual(0);
   })
@@ -33,7 +33,7 @@ describe('getMaxTemperatureForLocation', () => {
     jest.setTimeout(30000);
     const location = 'heathrow';
     const year = 1700
-    await checkDataAvailability({location, year})
+    await checkDataAvailability({location:location, year:year})
 		const result = await getMaxTemperatureForLocation({location:location});
 		expect(result).toEqual(0);
   })

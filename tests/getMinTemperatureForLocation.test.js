@@ -7,9 +7,9 @@ describe('getMinTemperatureForLocation', () => {
     jest.setTimeout(30000);
     const location = 'heathrow';
     const year = 2016
-    await checkDataAvailability({location, year})
-    await fetchingLocationData({location})
-		const result = await getMinTemperatureForLocation({location:location});
+    await checkDataAvailability({location:location, year:year})
+    await fetchingLocationData({location:location})
+		const result = await getMinTemperatureForLocation();
 		expect(result).toEqual(-4.6);
   })
   
@@ -17,9 +17,9 @@ describe('getMinTemperatureForLocation', () => {
     jest.setTimeout(30000);
     const location = 'oxford';
     const year = 2012
-    await checkDataAvailability({location, year})
-    await fetchingLocationData({location})
-		const result = await getMinTemperatureForLocation({location:location});
+    await checkDataAvailability({location:location, year:year})
+    await fetchingLocationData({location:location})
+		const result = await getMinTemperatureForLocation();
 		expect(result).toEqual(-5.8);
   })
 
@@ -27,9 +27,9 @@ describe('getMinTemperatureForLocation', () => {
     jest.setTimeout(30000);
     const location = 'heathrow';
     const year = 1600
-    await checkDataAvailability({location, year})
-    await fetchingLocationData({location})
-		const result = await getMinTemperatureForLocation({location:location});
+    await checkDataAvailability({location:location, year:year})
+    await fetchingLocationData({location:location})
+		const result = await getMinTemperatureForLocation();
 		expect(result).toEqual(0);
   })
 
@@ -37,9 +37,9 @@ describe('getMinTemperatureForLocation', () => {
     jest.setTimeout(30000);
     const location = 'oxford';
     const year = 1600
-    await checkDataAvailability({location, year})
-    await fetchingLocationData({location})
-		const result = await getMinTemperatureForLocation({location:location});
+    await checkDataAvailability({location:location, year:year})
+    await fetchingLocationData({location:location})
+		const result = await getMinTemperatureForLocation();
 		expect(result).toEqual(0);
   })
 })
