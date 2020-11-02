@@ -1,6 +1,6 @@
 const {getAverageSunHoursForLocation} = require('../src/index');
 const {checkDataAvailability} = require('../src/index');
-const {getMaxTemperatureForLocation} = require('../src/index')
+const {fetchingLocationData} = require('../src/index')
 
 describe('getAverageSunHoursForLocation', () => {
 	it('Successfully gets the overall average of sun hours for Oxford', async () =>{
@@ -8,7 +8,7 @@ describe('getAverageSunHoursForLocation', () => {
     const location = 'oxford';
     const year = '2012'
     await checkDataAvailability({location, year})
-    await getMaxTemperatureForLocation({location})
+    await fetchingLocationData({location})
 		const result = await getAverageSunHoursForLocation({location:location});
 		expect(result).toEqual(128.1);
   })
@@ -18,7 +18,7 @@ describe('getAverageSunHoursForLocation', () => {
     const location = 'heathrow';
     const year = '2012'
     await checkDataAvailability({location, year})
-    await getMaxTemperatureForLocation({location})
+    await fetchingLocationData({location})
 		const result = await getAverageSunHoursForLocation({location:location});
 		expect(result).toEqual(128.5);
   })
@@ -27,7 +27,7 @@ describe('getAverageSunHoursForLocation', () => {
     const location = 'heathrow';
     const year = 1600
     await checkDataAvailability({location, year})
-    await getMaxTemperatureForLocation({location})
+    await fetchingLocationData({location})
 		const result = await getAverageSunHoursForLocation({location:location});
 		expect(result).toEqual(0);
   })
@@ -37,7 +37,7 @@ describe('getAverageSunHoursForLocation', () => {
     const location = 'oxford';
     const year = 1600
     await checkDataAvailability({location, year})
-    await getMaxTemperatureForLocation({location})
+    await fetchingLocationData({location})
 		const result = await getAverageSunHoursForLocation({location:location});
 		expect(result).toEqual(0);
   })

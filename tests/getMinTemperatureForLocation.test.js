@@ -1,6 +1,6 @@
 const {getMinTemperatureForLocation} = require('../src/index');
 const {checkDataAvailability} = require('../src/index');
-const {getMaxTemperatureForLocation} = require('../src/index');
+const {fetchingLocationData} = require('../src/index');
 
 describe('getMinTemperatureForLocation', () => {
   it('Successfully gets the overall min Temperature for Heathrow', async () =>{
@@ -8,7 +8,7 @@ describe('getMinTemperatureForLocation', () => {
     const location = 'heathrow';
     const year = 2016
     await checkDataAvailability({location, year})
-    await getMaxTemperatureForLocation({location})
+    await fetchingLocationData({location})
 		const result = await getMinTemperatureForLocation({location:location});
 		expect(result).toEqual(-4.6);
   })
@@ -18,7 +18,7 @@ describe('getMinTemperatureForLocation', () => {
     const location = 'oxford';
     const year = 2012
     await checkDataAvailability({location, year})
-    await getMaxTemperatureForLocation({location})
+    await fetchingLocationData({location})
 		const result = await getMinTemperatureForLocation({location:location});
 		expect(result).toEqual(-5.8);
   })
@@ -28,7 +28,7 @@ describe('getMinTemperatureForLocation', () => {
     const location = 'heathrow';
     const year = 1600
     await checkDataAvailability({location, year})
-    await getMaxTemperatureForLocation({location})
+    await fetchingLocationData({location})
 		const result = await getMinTemperatureForLocation({location:location});
 		expect(result).toEqual(0);
   })
@@ -38,7 +38,7 @@ describe('getMinTemperatureForLocation', () => {
     const location = 'oxford';
     const year = 1600
     await checkDataAvailability({location, year})
-    await getMaxTemperatureForLocation({location})
+    await fetchingLocationData({location})
 		const result = await getMinTemperatureForLocation({location:location});
 		expect(result).toEqual(0);
   })
