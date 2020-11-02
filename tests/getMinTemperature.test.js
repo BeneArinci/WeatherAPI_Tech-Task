@@ -1,4 +1,4 @@
-const {getMinTemperature} = require('../src/index');
+const {getMinTemperature, getMinTemperatureForLocation} = require('../src/index');
 const {fetchingSingleYear} = require('../src/index');
 const {checkDataAvailability} = require('../src/index');
 const apiDataMock = require ('../__mocks__/apiResponseSingleYear');
@@ -23,6 +23,24 @@ describe('getMinTemperature using real api Data', () => {
 		const result = await getMinTemperature({location:location, year:year});
 		expect(result).toEqual(2.4);
   })
+
+  it('returns 0 if data for the selected year are unavailable', async () =>{
+		const location = 'heathrow';
+		const year = 1800;
+		await checkDataAvailability({location:location, year:year});
+    await fetchingSingleYear({location:location, year:year});
+		const result = await getMinTemperature({location:location, year:year});
+		expect(result).toEqual(0);
+	})
+
+	it('returns 0 if data for the selected year are unavailable', async () =>{
+		const location = 'oxford';
+		const year = 1800;
+		await checkDataAvailability({location:location, year:year});
+    await fetchingSingleYear({location:location, year:year});
+		const result = await getMinTemperature({location:location, year:year});
+		expect(result).toEqual(0);
+	})
 
   //test no longer working because of multiple fetch calls and only a single mock
   // it('Successfully gets the min Temperature based on mock data', async () =>{
