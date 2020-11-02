@@ -8,7 +8,7 @@ let startYear;
 let endYear;
 let apiDataSingleYear;
 let apiDataLocation = [];
-let dataAvailable = true;
+let dataAvailable;
 
 
 const getYears = async ({location}) => {
@@ -21,19 +21,19 @@ const getYears = async ({location}) => {
 	endYear = data.result.endYear
 }
 
-const isYearAvailable = (year) => {
+const isYearAvailable = async (year) => {
 	return year>=startYear && year<=endYear
 }
 
-exports.checkDataAvailability = async({year, location}) => {
+const checkDataAvailability = async({year, location}) => {
 	await getYears({location})
-	if (isYearAvailable) {
+	await isYearAvailable(year)
+	if (isYearAvailable(year)) {
+		console.log('year available')
 		dataAvailable=true
 	} else { dataAvailable=false }
 	console.log(dataAvailable, 'inside chechdataav')
 }
-
-
 
 const fetchingSingleYear = async ({location, year}) => {
 	let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`, {
@@ -63,6 +63,8 @@ const getAverage = (valuesArray) => {
 
 // Get maximum Temperature for a year - Must return a number
 exports.getMaxTemperature = async ({location, year}) => {
+	console.log('starting')
+	console.log(location, year)
 	await checkDataAvailability({location, year})
 	console.log(dataAvailable, 'inside getmaxtemp')
 	if(dataAvailable) {
@@ -139,3 +141,6 @@ exports.getAverageSunHoursForLocation = async ({location}) => {
 	}
 	return 0
 }
+
+module.exports.checkDataAvailability = checkDataAvailability;
+module.exports.fetchingSingleYear = fetchingSingleYear;
