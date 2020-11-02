@@ -22,4 +22,24 @@ describe('getMinTemperatureForLocation', () => {
 		const result = await getMinTemperatureForLocation({location:location});
 		expect(result).toEqual(-5.8);
   })
+
+  it('returns 0 if data are not available for that year - example Heathrow', async () =>{
+    jest.setTimeout(30000);
+    const location = 'heathrow';
+    const year = 1600
+    await checkDataAvailability({location, year})
+    await getMaxTemperatureForLocation({location})
+		const result = await getMinTemperatureForLocation({location:location});
+		expect(result).toEqual(0);
+  })
+
+  it('returns 0 if data are not available for that year - example Oxford', async () =>{
+    jest.setTimeout(30000);
+    const location = 'oxford';
+    const year = 1600
+    await checkDataAvailability({location, year})
+    await getMaxTemperatureForLocation({location})
+		const result = await getMinTemperatureForLocation({location:location});
+		expect(result).toEqual(0);
+  })
 })
