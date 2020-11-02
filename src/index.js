@@ -26,7 +26,7 @@ const fetchingSingleYear = async ({location, year}) => {
 		headers: headers
 	})
 	let data = await response.json()
-	apiDataSingleYear = data
+	apiDataSingleYear = data.result
 }
 
 const fetchingLocationData = async ({location}) => {
@@ -50,13 +50,13 @@ const getAverage = (valuesArray) => {
 // Get maximum Temperature for a year - Must return a number
 exports.getMaxTemperature = async ({location, year}) => {
 	await fetchingSingleYear({location, year})
-	maxTemp = Math.max.apply(Math, apiDataSingleYear.result.map(function(temp) { return temp.temperature_max; }))
+	maxTemp = Math.max.apply(Math, apiDataSingleYear.map(function(temp) { return temp.temperature_max; }))
 	return maxTemp
 }
 
 // Get minimum temperature for a year - Must return a number
 exports.getMinTemperature = async ({location, year}) => {
-	minTemp = Math.min.apply(Math, apiDataSingleYear.result.map(function(temp) { return temp.temperature_min; }))
+	minTemp = Math.min.apply(Math, apiDataSingleYear.map(function(temp) { return temp.temperature_min; }))
 	return minTemp
 }
 
@@ -87,8 +87,9 @@ exports.getMinTemperatureForLocation = async ({location}) => {
 
 // Get average sun hours for a year - Must return a number
 exports.getAverageSunHours = async ({location, year}) => {
-	let monthlySunHours = apiDataSingleYear.result.map((month) => month.sun)
-	return getAverage(monthlySunHours);
+	let monthlySunHours = apiDataSingleYear.map((month) => month.sun)
+	let average = getAverage(monthlySunHours).toFixed(1);
+	return Number(average)
 }
 
 // Get average sun hours for all years - Must return a number
@@ -101,5 +102,6 @@ exports.getAverageSunHoursForLocation = async ({location}) => {
 			sunAverages.push(yearlySunAverage)
 		}
 	})
-	return getAverage(sunAverages);
+	let average = getAverage(sunAverages).toFixed(1);
+	return Number(average);
 }
