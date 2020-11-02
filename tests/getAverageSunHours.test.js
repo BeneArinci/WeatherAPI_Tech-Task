@@ -16,15 +16,21 @@ describe('getAverageSunHours using apiMock', () => {
 		expect(result).toEqual(75);
 		sinon.restore();
 	})
-})
 
-describe('getAverageSunHours', () => {
 	it('Successfully gets the average sun hours for oxford 2018', async () =>{
 		const location = 'oxford';
     const year = 2018;
     await getMaxTemperature({location:location, year:year});
 		const result = await getAverageSunHours({location:location, year:year});
 		expect(result).toEqual(147.9);
+	})
+
+	it('Successfully gets the average sun hours for Heathrow 2015', async () =>{
+		const location = 'heathrow';
+    const year = 2015;
+    await getMaxTemperature({location:location, year:year});
+		const result = await getAverageSunHours({location:location, year:year});
+		expect(result).toEqual(125.6);
 	})
 })
 
