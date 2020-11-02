@@ -15,7 +15,8 @@ I developed a method for checking the year data availability. The first function
 
 ## Testing
 I tested all the main functions with real API data (both in a normal scenario and edge case).<br>
-In the beginning, I also created a file with mock API data (still available even if no longer used) and I had the opportunity to test with that the real functionality of all the functions that were making a single API call (getMaxTemp, getMinTemp, getAverageSunHours).<br>
+I had to increas the Jest runtime in the structure.test.js file because it wasn't enough to get the final results in time. The tests remained the same. <br>
+For testing the functionalities, in the beginning, I also created a file with mock API data (still available even if no longer used) and I had the opportunity to test with that the actual functionality of all the functions that were making a single API call (getMaxTemp, getMinTemp, getAverageSunHours).<br>
 After adding the function for checking if the data for the requested year were available, also the above functions were required to do 2 different fetch calls and it became impossible to do a generic fetch mock. For this reason, I had to deactivate the existing mockAPI tests.<br>
 
 ## External Libraries
