@@ -27,9 +27,7 @@ const isYearAvailable = async (year) => {
 
 const checkDataAvailability = async({year, location}) => {
 	await getYears({location})
-	await isYearAvailable(year)
-	if (isYearAvailable(year)) {
-		console.log('year available')
+	if (await isYearAvailable(year)) {
 		dataAvailable=true
 	} else { dataAvailable=false }
 }
@@ -63,7 +61,6 @@ const getAverage = (valuesArray) => {
 // Get maximum Temperature for a year - Must return a number
 exports.getMaxTemperature = async ({location, year}) => {
 	await checkDataAvailability({location, year})
-	console.log(dataAvailable, 'inside getmaxtemp')
 	if(dataAvailable) {
 		await fetchingSingleYear({location, year})
 		maxTemp = Math.max.apply(Math, apiDataSingleYear.map(function(temp) { return temp.temperature_max; }))
