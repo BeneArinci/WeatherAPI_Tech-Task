@@ -1,9 +1,9 @@
 const fetch = require('node-fetch');
-const { getAverage } = require('./sideFunctions')
+const { getAverage } = require('./sideFunctions');
 
 const headers = {
   "x-api-key": "mcDLmlxrtw7ZHC70gD8FL4rtrXSPsUEB4iSp4lg3",
-}
+};
 
 let startYear;
 let endYear;
@@ -17,20 +17,20 @@ const getYears = async ({location}) => {
 		method: "GET",
 		headers: headers
 	})
-	let data = await response.json()
-  startYear = data.result.startYear
-	endYear = data.result.endYear
+	let data = await response.json();
+  startYear = data.result.startYear;
+	endYear = data.result.endYear;
 }
 
 // private support function for checking if year is available
-const _isYearAvailable = async (year) => {
-	return year>=startYear && year<=endYear
+const isYearAvailable = (year) => {
+	return year>=startYear && year<=endYear;
 }
 
 // checking data availability for a specific year
 const checkDataAvailability = async({year, location}) => {
 	await getYears({location})
-	if (await _isYearAvailable(year)) {
+	if (isYearAvailable(year)) {
 		dataAvailable=true
 	} else { dataAvailable=false }
 }
@@ -41,8 +41,8 @@ const fetchingSingleYear = async ({location, year}) => {
 		method: "GET",
 		headers: headers
 	})
-	let data = await response.json()
-	apiDataSingleYear = data.result
+	let data = await response.json();
+	apiDataSingleYear = data.result;
 }
 
 // function for fetching all data related to a location
@@ -53,16 +53,9 @@ const fetchingLocationData = async ({location}) => {
 			headers: headers
 		})
 		let data = await response.json();
-		apiDataLocation.push(data.result)
+		apiDataLocation.push(data.result);
 	}
 }
-
-// calculate the average of array data
-// const getAverage = (valuesArray) => {
-// 	let reducer = (total, currentValue) => total + currentValue;
-// 	let sum = valuesArray.reduce(reducer)
-// 	return sum / valuesArray.length;
-// }
 
 // Get maximum Temperature for a year - Must return a number
 exports.getMaxTemperature = async ({location, year}) => {
@@ -72,7 +65,7 @@ exports.getMaxTemperature = async ({location, year}) => {
 		maxTemp = Math.max.apply(Math, apiDataSingleYear.map(function(temp) { return temp.temperature_max; }))
 		return maxTemp
 	} 
-	return 0 
+	return 0;
 }
 
 // Get minimum temperature for a year - Must return a number
@@ -81,7 +74,7 @@ exports.getMinTemperature = async ({location, year}) => {
 		minTemp = Math.min.apply(Math, apiDataSingleYear.map(function(temp) { return temp.temperature_min; }))
 		return minTemp
 	} 
-	return 0
+	return 0;
 }
 
 // Get maximum Temperature for all years - Must return a number
@@ -97,7 +90,7 @@ exports.getMaxTemperatureForLocation = async ({location}) => {
 		})
 		return highestTemp;
 	}
-	return 0
+	return 0;
 }
 
 // Get minimum temperature for all years - Must return a number
@@ -112,7 +105,7 @@ exports.getMinTemperatureForLocation = async ({location}) => {
 		})
 		return lowestTemp;
 	}
-	return 0
+	return 0;
 }
 
 // Get average sun hours for a year - Must return a number
@@ -122,7 +115,7 @@ exports.getAverageSunHours = async ({location, year}) => {
 		let average = getAverage(monthlySunHours).toFixed(1);
 		return Number(average)
 	}
-	return 0
+	return 0;
 }
 
 // Get average sun hours for all years - Must return a number
@@ -130,8 +123,8 @@ exports.getAverageSunHoursForLocation = async ({location}) => {
 	if(dataAvailable) {
 		let sunAverages = []
   apiDataLocation.forEach((year) => {
-		let monthlySunHours = year.map((month) => month.sun)
-		let yearlySunAverage = getAverage(monthlySunHours)
+		let monthlySunHours = year.map((month) => month.sun);
+		let yearlySunAverage = getAverage(monthlySunHours);
 		if (yearlySunAverage !== 0) {
 			sunAverages.push(yearlySunAverage)
 		}
@@ -139,7 +132,7 @@ exports.getAverageSunHoursForLocation = async ({location}) => {
 	let average = getAverage(sunAverages).toFixed(1);
 	return Number(average);
 	}
-	return 0
+	return 0;
 }
 
 module.exports.checkDataAvailability = checkDataAvailability;
