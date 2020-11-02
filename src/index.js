@@ -10,7 +10,7 @@ let apiDataSingleYear;
 let apiDataLocation = [];
 let dataAvailable;
 
-
+// fetching available start and end years for specific location
 const getYears = async ({location}) => {
 	let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/years`, {
 		method: "GET",
@@ -21,17 +21,20 @@ const getYears = async ({location}) => {
 	endYear = data.result.endYear
 }
 
-const isYearAvailable = async (year) => {
+// private support function for checking if year is available
+const _isYearAvailable = async (year) => {
 	return year>=startYear && year<=endYear
 }
 
+// checking data availability for a specific year
 const checkDataAvailability = async({year, location}) => {
 	await getYears({location})
-	if (await isYearAvailable(year)) {
+	if (await _isYearAvailable(year)) {
 		dataAvailable=true
 	} else { dataAvailable=false }
 }
 
+// function for fetching data related to a location in a specific year
 const fetchingSingleYear = async ({location, year}) => {
 	let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`, {
 		method: "GET",
@@ -41,6 +44,7 @@ const fetchingSingleYear = async ({location, year}) => {
 	apiDataSingleYear = data.result
 }
 
+// function for fetching all data related to a location
 const fetchingLocationData = async ({location}) => {
 	for(year=startYear; year<=endYear; year++) {
 		let response = await fetch(`https://grudwxjpa2.execute-api.eu-west-2.amazonaws.com/dev/${location}/year/${year}`, {
@@ -52,7 +56,8 @@ const fetchingLocationData = async ({location}) => {
 	}
 }
 
-const getAverage = (valuesArray) => {
+// calculate the average of array data
+const _getAverage = (valuesArray) => {
 	let reducer = (total, currentValue) => total + currentValue;
 	let sum = valuesArray.reduce(reducer)
 	return sum / valuesArray.length;
@@ -113,7 +118,7 @@ exports.getMinTemperatureForLocation = async ({location}) => {
 exports.getAverageSunHours = async ({location, year}) => {
 	if(dataAvailable) {
 		let monthlySunHours = apiDataSingleYear.map((month) => month.sun)
-		let average = getAverage(monthlySunHours).toFixed(1);
+		let average = _getAverage(monthlySunHours).toFixed(1);
 		return Number(average)
 	}
 	return 0
@@ -125,12 +130,12 @@ exports.getAverageSunHoursForLocation = async ({location}) => {
 		let sunAverages = []
   apiDataLocation.forEach((year) => {
 		let monthlySunHours = year.map((month) => month.sun)
-		let yearlySunAverage = getAverage(monthlySunHours)
+		let yearlySunAverage = _getAverage(monthlySunHours)
 		if (yearlySunAverage !== 0) {
 			sunAverages.push(yearlySunAverage)
 		}
 	})
-	let average = getAverage(sunAverages).toFixed(1);
+	let average = _getAverage(sunAverages).toFixed(1);
 	return Number(average);
 	}
 	return 0
@@ -138,4 +143,4 @@ exports.getAverageSunHoursForLocation = async ({location}) => {
 
 module.exports.checkDataAvailability = checkDataAvailability;
 module.exports.fetchingSingleYear = fetchingSingleYear;
-module.exports.fetchingLocationData = fetchingSingleYear;
+module.exports.fetchingLocationData = fetchingLocationData;
