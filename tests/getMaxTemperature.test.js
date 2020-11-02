@@ -26,4 +26,12 @@ describe('getMaxTemperature using apiMock', () => {
 		const result = await getMaxTemperature({location:location, year:year});
 		expect(result).toEqual(23.6);
 	})
+
+	it('returns 0 if data for the selected year are unavailable', async () =>{
+		const location = 'heathrow';
+		const year = 1800;
+		const result = await getMaxTemperature({location:location, year:year});
+		expect(result).toEqual(0);
+	})
+
 })
