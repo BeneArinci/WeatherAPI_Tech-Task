@@ -4,9 +4,14 @@ I wanted to thank you all for allowing me to work on this tech task. I did not h
 While telling you how I solved this challenge, there are a few points worth to be mentioned.
 
 ## Priority to performance
-I started by keeping all the exported functions divided from the others. Everyone of them was performing a specific call to the api server. This solution was working but it was extremely slow for the large number of API calls/quantity of data to be analysed. On top of this, there was a lot of repetition on my code (fetching same data multiple times for example). <br>
-For this reason I refactored my code in order to reduce to the minimum the API calls and improve the performance. Consequently, I decided to store the api data into variables so that all the other functions were able to use them. The performance significantly improved passing from ~35sec to ~15sec execution time (Oxford). <br>
-On top of this, I tried to divide as much as possible the responsponibilities for different tasks into different functions. <br>
+I started by keeping all the exported functions divided from the others. Every one of them was performing a specific call to the API server. This solution was working but it was extremely slow for a large number of API calls/quantity of data to be analyzed. On top of this, there was a lot of repetition on my code (fetching the same data multiple times for example). <br>
+For this reason, I refactored my code in order to reduce to the minimum the API calls and improve the performance. Consequently, I decided to store the API data into variables so that all the other functions were able to use them. The performance significantly improved passing from ~35sec to ~15sec execution time (Oxford).<br>
+On top of this, I tried to divide as much as possible the responsibilities for different tasks into different functions.
+
+## External Libraries
+I used the *node-fetch* library to allow the use of the fetch function from the back-end.
+*Sinon* is the library that I used for mocking the fetch calls (read the "testing" paragraph)
+
 
 ### Task
 Your task is to create a client for a weather API.
