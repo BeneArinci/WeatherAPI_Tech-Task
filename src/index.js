@@ -32,7 +32,6 @@ const checkDataAvailability = async({year, location}) => {
 		console.log('year available')
 		dataAvailable=true
 	} else { dataAvailable=false }
-	console.log(dataAvailable, 'inside chechdataav')
 }
 
 const fetchingSingleYear = async ({location, year}) => {
@@ -63,8 +62,6 @@ const getAverage = (valuesArray) => {
 
 // Get maximum Temperature for a year - Must return a number
 exports.getMaxTemperature = async ({location, year}) => {
-	console.log('starting')
-	console.log(location, year)
 	await checkDataAvailability({location, year})
 	console.log(dataAvailable, 'inside getmaxtemp')
 	if(dataAvailable) {
@@ -144,3 +141,4 @@ exports.getAverageSunHoursForLocation = async ({location}) => {
 
 module.exports.checkDataAvailability = checkDataAvailability;
 module.exports.fetchingSingleYear = fetchingSingleYear;
+module.exports.fetchingLocationData = fetchingSingleYear;
