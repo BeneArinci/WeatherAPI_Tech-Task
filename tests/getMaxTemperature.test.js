@@ -20,6 +20,13 @@ describe('getMaxTemperature using apiMock', () => {
 		expect(result).toEqual(27.4);
 	})
 
+	// it('returns 0 if data for the selected year are unavailable', async () =>{
+	// 	const location = 'heathrow';
+	// 	const year = 1800;
+	// 	const result = await getMaxTemperature({location:location, year:year});
+	// 	expect(result).toEqual(0);
+	// })
+
 	it('Successfully gets the max Temperature for Heathrow 1950', async () =>{
 		const location = 'heathrow';
 		const year = 1950;
@@ -27,11 +34,5 @@ describe('getMaxTemperature using apiMock', () => {
 		expect(result).toEqual(23.6);
 	})
 
-	it('returns 0 if data for the selected year are unavailable', async () =>{
-		const location = 'heathrow';
-		const year = 1800;
-		const result = await getMaxTemperature({location:location, year:year});
-		expect(result).toEqual(0);
-	})
 
 })
