@@ -19,4 +19,11 @@ describe('getMaxTemperature using apiMock', () => {
 		const result = await getMaxTemperature({location:location, year:year});
 		expect(result).toEqual(27.4);
 	})
+
+	it('Successfully gets the max Temperature for Heathrow 1950', async () =>{
+		const location = 'heathrow';
+		const year = 1950;
+		const result = await getMaxTemperature({location:location, year:year});
+		expect(result).toEqual(23.6);
+	})
 })
