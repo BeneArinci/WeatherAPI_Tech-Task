@@ -37,7 +37,7 @@ describe('getAverageSunHours using real api data', () => {
 		expect(result).toEqual(125.6);
 	})
 
-	it('returns 0 if data for the selected year are unavailable', async () =>{
+	it('returns 0 if data for the selected year are unavailable, example Heathrow', async () =>{
 		const location = 'heathrow';
 		const year = 1800;
 		await checkDataAvailability({location:location, year:year});
@@ -46,7 +46,7 @@ describe('getAverageSunHours using real api data', () => {
 		expect(result).toEqual(0);
 	})
 
-	it('returns 0 if data for the selected year are unavailable', async () =>{
+	it('returns 0 if data for the selected year are unavailable, example Oxford', async () =>{
 		const location = 'oxford';
 		const year = 1800;
 		await checkDataAvailability({location:location, year:year});

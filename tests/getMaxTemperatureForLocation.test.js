@@ -20,7 +20,7 @@ describe('getMaxTemperatureForLocation', () => {
 		expect(result).toEqual(28.3);
   })
   
-  it('Returns 0 if year is not available', async () =>{
+  it('Returns 0 if year is not available - example Oxford', async () =>{
     jest.setTimeout(30000);
     const location = 'oxford';
     const year = 1800
@@ -29,7 +29,7 @@ describe('getMaxTemperatureForLocation', () => {
 		expect(result).toEqual(0);
   })
 
-  it('Returns 0 if year is not available', async () =>{
+  it('Returns 0 if year is not available - example Heathrow', async () =>{
     jest.setTimeout(30000);
     const location = 'heathrow';
     const year = 1700
